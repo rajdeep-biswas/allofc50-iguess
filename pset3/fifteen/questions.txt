@@ -1,0 +1,4 @@
+0. between 3 and 9 inclusive
+1. two dimensional integer array
+2. greet()
+3. init(), draw(), move(), won()

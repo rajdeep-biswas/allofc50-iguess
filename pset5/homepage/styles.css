@@ -1,0 +1,45 @@
+body {
+    background: url("/bg.jpg");
+    background-size: cover;
+    color: white;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    padding: 50px 10px 10px 10px;
+    color: #FFF;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+a {
+    color: grey;
+    font-weight: normal;
+}
+
+a:hover {
+    padding-left: 5px;
+    color: #BBB;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+div {
+    position: absolute;
+}
+
+.qbody {
+    margin: 30px 0 0 200px;
+}
+
+.shiftRight {
+    margin: 30px 0 0 700px;
+}
+
+h5, h4, h3, h2 {
+    text-align: right;
+    padding-right: 25px;
+}

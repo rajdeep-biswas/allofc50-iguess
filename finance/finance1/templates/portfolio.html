@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <script>
+        function compare(symbol) {
+            let want = document.getElementById(symbol).value;
+            if(want < 0) {
+                document.getElementById(symbol + "button").style.visibility = "visible";
+                document.getElementById(symbol + "button").innerHTML = "SELL";
+                document.getElementById("sellorbuy" + symbol).action = "/sell";
+            }
+            else if(want > 0) {
+                document.getElementById(symbol + "button").style.visibility = "visible";
+                document.getElementById(symbol + "button").innerHTML = "BUY";
+                document.getElementById("sellorbuy" + symbol).action = "/buy";
+            }
+            else {
+                document.getElementById(symbol + "button").style.visibility = "hidden";
+                document.getElementById("sellorbuy" + symbol).action = "/";
+            }
+        }
+    </script>
+    <table class="table table-striped" style="text-align: left;">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="4"></td>
+                <td><b>{{ total }}</b></td>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for row in rows %}
+
+                <tr>
+                    <td>{{ row["symbol"] }}</td>
+                    <td>{{ row["name"] }}</td>
+                    <td>
+                        <form id="sellorbuy{{ row['symbol'] }}" action="/" method="POST">
+                            {{ row["shares"] }}
+                            <input autocomplete="off" class="form-control" id="{{ row["symbol"] }}" min="{{ -row["shares"] }}" name="shares"
+                                placeholder="Shares" type="number" value="0" onchange="compare('{{ row['symbol'] }}')">
+                            <input type="hidden" name="symbol" value="{{ row["symbol"] }}">
+                            <button id="{{ row["symbol"] + "button" }}" type="submit" style="visibility: hidden;"></p>
+                        </form>
+                    </td>
+                    <td>{{ row["price"] }}</td>
+                    <td>{{ row["total"] }}</td>
+                </tr>
+
+            {% endfor %}
+            <tr>
+                <td colspan="4">CASH</td>
+                <td>{{ cash }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <span>
+        NASDAQ is now {% if online %}<span style="color: green;">online</span>{% else %}<span style="color: red;">offline</span>{% endif %}
+    </span>
+{% endblock %}

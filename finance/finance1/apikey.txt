@@ -1,0 +1,11 @@
+pk_2616af659ec7461bab18c85a1c19695e
+
+transactions schema: userid, symbol, shares, priceofone, type(buy/sell), datetime
+userid symbol shares price type datetime
+
+stonks schema: userid, symbol, shares
+
+1. fix buying / selling updates on portfolio page (shares- actually just there needs to be a different table
+use the transactions table for the history page
+
+this needs a huge refactoring jesus h christ
